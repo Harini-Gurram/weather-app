@@ -7,6 +7,7 @@ import {
   WiFog,
   WiHumidity,
   WiStrongWind,
+  WiUmbrella,
 } from "weather-icons-react";
 import "./style.css";
 
@@ -33,18 +34,22 @@ function Home() {
       });
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && name !== "") {
+      // setSearching(true);
+      handleClick();
+    }
+  };
   return (
     <div className="container">
       <div className="weather">
         <div className="inp">
           <input
-            type="text"
+            type="search"
             placeholder="Enter city name"
             onChange={(e) => setName(e.target.value)}
+            onKeyDown={handleKeyPress}
           />
-          <button onClick={handleClick} type="submit">
-            Search
-          </button>
         </div>
         {typeof data.main !== "undefined" ? (
           <div className="winfo">
@@ -52,9 +57,9 @@ function Home() {
             <h3>{data.name}</h3>
 
             {data.weather[0].main === "Clouds" ? (
-              <WiDayCloudy size={200} color={"white"} />
+              <WiDayCloudy size={150} color={"white"} />
             ) : data.weather[0].main === "Clear" ? (
-              <WiDaySunny size={200} color={"white"} />
+              <WiDaySunny size={150} color={"white"} />
             ) : data.weather[0].main === "Rain" ? (
               <WiDayRain size={150} color={"white"} />
             ) : data.weather[0].main === "Mist" || "Fog" ? (
@@ -87,7 +92,35 @@ function Home() {
             </div>
           </div>
         ) : (
-          " "
+          <div className="winfo">
+            <br></br>
+            <h3>{name || " "}</h3>
+            <WiUmbrella size={150} color={"white"} />
+            <br></br>
+            <br></br>
+            <h2>---------------</h2>
+            <p>Please enter proper city name</p>
+            <div className="details">
+              <div className="col">
+                <WiHumidity
+                  size={80}
+                  color={"white"}
+                  style={{ opacity: "0" }}
+                />
+                <div className="humidity" style={{ opacity: "0" }}>
+                  <p>%</p>
+                  <p>Humidity</p>
+                </div>
+              </div>
+              {/* <div className="col">
+                  <WiStrongWind size={80} />
+                  <div className="wind">
+                
+                    <p>Wind</p>
+                  </div>
+                </div> */}
+            </div>
+          </div>
         )}
       </div>
     </div>
