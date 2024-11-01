@@ -28,18 +28,17 @@
     justify-content: space-between;
 }
 .inp input {
-    border:none;
-    outline:0;
+    border:1px solid rgba(255, 255, 255, 0.3);
     padding:12px 25px;
-    font-size: 18px;
-    background-color: rgb(222,237,243);
+    background: rgba(255, 255, 255, 0.7);
+    outline:0;
     color:black;
     border-radius: 30px;
     flex:1;
     margin-right: 12px;
 
 }
-button{
+.button{
     border:none;
     outline: 0;
     width:50px;
@@ -47,7 +46,7 @@ button{
     border-radius: 50%;
     cursor:pointer;
 }
-.search button img{
+.search .button img{
     width:20px;
 }
 
